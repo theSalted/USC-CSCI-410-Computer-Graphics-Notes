@@ -62,14 +62,14 @@ GPU - (verticeies) -> Vertex Shader - (vertices) -> Tessellation Shader - (trian
 - A very small set of C++
 
 *Atrribute*
-- Information specific to each vertex.pixel passed to vertex/fragment shader
+s- Information specific to each vertex.pixel passed to vertex/fragment shader
 - e.g. Vertex Color
 *Uniform*
 - Constant information passed to vertex/fragment shader
 - Cannot be written to in a shader
 - e.g. Light position, eye position
 *Out/in*
-- Info passed from vertex shader to fragment sader
+- Info passed from vertex shader to fragment shader
 - INterpolated from vertices to pixels
 - Write in vertex shader,  but only read in fragment shader
 - e.g. vertex color, texture coords
@@ -90,3 +90,73 @@ GPU - (verticeies) -> Vertex Shader - (vertices) -> Tessellation Shader - (trian
 - Introduced in OpenGL 2.0
 - We use shader version 1.50:
 - Current version: 4.60
+
+## Vertex Shader
+- Input: vertices, in object coordinates and pre-vertex attributes
+    - Color
+    - Normal
+    - Texture/UV coordinates
+    - Many more
+- Output:
+    - Vertex location in clip coordinates
+    - Vertex color
+    - Vertex normal
+    - Many more possible
+
+## Fragment Shader
+- Input: fragments （tentative pixels), and per pixel attributes
+    - Color
+    - Normal
+    - Texture coordinates
+    - Manay more are possible
+- Inputs are outputs from the vertex shader, interpolated (by the GPU) to pixel location!
+- Output:
+    - pixel color
+    - depth value
+    - can discard the fragment using the discard keyword
+## Perspective projection
+- Where do we handle the final perpective divede?
+- Is it even possible in a shader? Or should OpenGL handle it for us?
+- Expercise!
+
+### Pipeline Program
+- Container of all the saders
+- Vertext, fragment, geometry, tessellation, compute
+- Can have several programs
+- Must have at least one
+- At any moment of time, exactly one pipeline program is bound
+
+#### Installing Pipeline Programs
+1. Create Shaders
+2. Specify Shaders
+3. Compiling Shaders
+    - Shader are almost never (pre)compiled because even each version of graphics card are different architecture
+4. Creating Program Objects
+5. Attach Shaders to Programs
+6. Link Shaders to Programs
+7. Enable Shaders
+
+*GLSL: Swizzling*
+- Swiziling is a convenient way to acces vector components, e.g. `myVector.rgba`, `myVector.xy`
+
+*GLSL: Flow Control*
+Loops
+- C++ style if-else
+- C++ style for, while, and do
+Best not using them
+
+Jumps
+- continue
+- break
+- return
+- discard (in fragment shader, not draw in this frame)
+
+*GLSL: Functions*
+- Much like C++
+- entry point into a shader is `void main()`
+- No support for recursion
+- Call by value return calling convention can add a parameter qy
+- c++ like overloading exists
+- args can be const
+- You can add a parameter qualifier
+
