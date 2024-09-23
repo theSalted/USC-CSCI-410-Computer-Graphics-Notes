@@ -56,6 +56,9 @@ int windowWidth = 1280;
 int windowHeight = 720;
 char windowTitle[512] = "CSCI 420 Homework 1";
 
+// Mode of the application
+// 0 (mode 1): vertext; 1 (mode 2) line; 2 (mode 3) triangles; 3 (mode 4) smoothed
+int mode = 0; 
 
 // Number of vertices in the single triangle (starter code).
 int numVertices;
@@ -220,6 +223,26 @@ void keyboardFunc(unsigned char key, int x, int y)
   {
     case 27: // ESC key
       exit(0); // exit the program
+    break;
+
+    case '1':
+      cout << "You pressed the 1." << endl;
+      mode = 0;
+    break;
+
+    case '2':
+      cout << "You pressed the 2." << endl;
+      mode = 1;
+    break;
+
+    case '3':
+      cout << "You pressed the 3." << endl;
+      mode = 2;
+    break;
+
+    case '4':
+      cout << "You pressed the 4." << endl;
+      mode = 3;
     break;
 
     case ' ':

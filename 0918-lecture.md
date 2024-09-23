@@ -158,5 +158,46 @@ Jumps
 - Call by value return calling convention can add a parameter qy
 - c++ like overloading exists
 - args can be const
-- You can add a parameter qualifier
+- You can add a parameter qualifier 
+    - in (default; will be copied into variable on function call)
+    - out (will be copied into variable on function return)
+    - inout (will be copied into variable on function call and return)
+- `const` contradicts out and inout
+- Poor man's pass-by-referenc
+    - Not actual refrences, only copying
+    - Avoid if you can because of confusion
+*GLSL: Built-in functions*
+- Wide Assortment
+    - Trigonometry
+    - Exponential (pow, log, sqrt, etc.)
+    - Common
+    - Geometry
+    - Relational
+*GLSL: Built-in Variable*
+- Alway prefaced with gl_
+- Accessible to both vertex and fragment shaders
+- Examples:
+    - Index of currently processed vertex
+    - gl_VertexID: index of currently processed vertex
+    - gl_FragCoord: x, y: coordinate of pixel, z: depth
+    - gl_FragDepth: pixel depth
+
+## Debugging Shaders
+- More difficult than debugging c programs
+- Common show-stoppers:
+    - Typos in shader source
+    - Assuming implicit type conversion (cannot convert vec4 to vec3)
+    - Attempting to connect VAOs to non-existent
+    - Driver bugs beyond your control
+
+### Best practices
+- printf debugging corresponds to just writing into an output color
+- Pass variable through to fragment shader
+- Display input variables (make sure your shader goes through)
+- Write multiple functions and color-debug them separately
+
+
+
+
+
 
